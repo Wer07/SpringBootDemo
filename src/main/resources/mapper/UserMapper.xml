@@ -5,7 +5,11 @@
     <result column="id" jdbcType="BIGINT" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="role_id" jdbcType="BIGINT" property="roleId" />
   </resultMap>
+  <sql id ="Base_Column_List">
+    id,username,password,role_id
+  </sql>
   <insert id="save" parameterType="com.example.demo.model.User">
     insert into t_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -18,6 +22,9 @@
       <if test="password != null">
         password,
       </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -29,6 +36,13 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
     </trim>
   </insert>
+
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from t_user where username = #{username,jdbcType=VARCHAR};
+  </select>
 </mapper>

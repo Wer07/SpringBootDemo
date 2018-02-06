@@ -11,6 +11,8 @@ public class User {
         return id;
     }
 
+    private Long roleId;
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -29,6 +31,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     @Override

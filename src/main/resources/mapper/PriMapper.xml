@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.repository.PriMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.Pri">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="pri_code" jdbcType="VARCHAR" property="priCode" />
+    <result column="pri_name" jdbcType="VARCHAR" property="priName" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.model.Pri">
+    insert into t_pri (id, pri_code, pri_name
+      )
+    values (#{id,jdbcType=BIGINT}, #{priCode,jdbcType=VARCHAR}, #{priName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.Pri">
+    insert into t_pri
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="priCode != null">
+        pri_code,
+      </if>
+      <if test="priName != null">
+        pri_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="priCode != null">
+        #{priCode,jdbcType=VARCHAR},
+      </if>
+      <if test="priName != null">
+        #{priName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

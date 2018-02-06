@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.repository.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.Role">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="role_code" jdbcType="VARCHAR" property="roleCode" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    r.id,r.role_code,r.role_name
+  </sql>
+  <select id="selectByUid" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from t_role r join t_user u on r.id = u.role_id where u.id = #{uId,jdbcType=BIGINT};
+  </select>
+</mapper>
